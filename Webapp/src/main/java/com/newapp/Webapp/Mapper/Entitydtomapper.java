@@ -57,7 +57,7 @@ public class Entitydtomapper {
 	}
 	
 	public Userdto mapUserTodtoPlusAddress(User user) {
-		Userdto userdto = new Userdto ();
+		Userdto userdto = mapUserTodtoBasic(user);
 		if(user.getAddress() != null) {
 			Addressdto addrressdto = mapAddressTodtoBasic(user.getAddress());
 			userdto.setAddress(addrressdto);
