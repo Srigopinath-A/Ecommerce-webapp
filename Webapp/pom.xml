@@ -88,6 +88,11 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-storage-blob</artifactId>
+			<version>12.14.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

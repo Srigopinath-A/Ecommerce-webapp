@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.newapp.Webapp.Dto.Addressdto;
+import com.newapp.Webapp.Dto.Categorydto;
 import com.newapp.Webapp.Dto.OrderItemdto;
 import com.newapp.Webapp.Dto.Productdto;
 import com.newapp.Webapp.Dto.Userdto;
 import com.newapp.Webapp.Entity.Address;
+import com.newapp.Webapp.Entity.Category;
 import com.newapp.Webapp.Entity.OrderItem;
 import com.newapp.Webapp.Entity.Product;
 import com.newapp.Webapp.Entity.User;
@@ -34,6 +36,13 @@ public class Entitydtomapper {
 		addressdto.setCountry(address.getCountry());
 		addressdto.setZipcode(address.getZipcode());
 		return addressdto;
+	}
+	
+	public Categorydto mapCategoryTodtoBasic (Category category) {
+		Categorydto categorydto =  new Categorydto();
+		categorydto.setId(category.getId());
+		categorydto.setName(category.getName());
+		return categorydto;
 	}
 	
 	public OrderItemdto mapOrderItemTodtoBasic(OrderItem orderitem) {
