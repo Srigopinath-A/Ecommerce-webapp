@@ -20,7 +20,7 @@ public class AzureConfig {
 	
 	public BlobServiceClient blobServiceClient() {
 		String endpoint = String.format("https://%s.blob.core.windows.net", accountname);
-		String connectionstring = String.format("DefaultEndpointsProtocol=https;AccountName=ecom01;AccountKey=Sjo3Z5Bf0CboBD801gp+iBEIRWf8LjYFPKSsGzt4XCRxA7kgs2kG0xmzufd+7nH8qNvI8MWUIZ10+ASt/Wz9ww==;EndpointSuffix=core.windows.net");
+		String connectionstring = String.format("DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s;EndpointSuffix=core.windows.net", accountname, accountkey);
 				
 		return new BlobServiceClientBuilder()
 				.endpoint(endpoint)
