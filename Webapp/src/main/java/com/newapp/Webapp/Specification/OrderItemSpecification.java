@@ -18,9 +18,11 @@ public class OrderItemSpecification {
 	
 	// this search for id and Start date and end date also search for status
 	//also specification to filter order item by status 
-	private static Specification<OrderItem> hasStatus(OrderStatus status){
-		return ((root, query, CriteriaBuilder) -> status != null ? CriteriaBuilder.equal(root.get("status"), status) : null);
-	}
+	public static Specification<OrderItem> hasStatus(OrderStatus status){
+        return ((root, query, criteriaBuilder) ->
+                status != null ? criteriaBuilder.equal(root.get("status"), status) : null);
+
+    }
 	
 	//to filter using start date and end date 
 	// also specification to filter order item by data range 
