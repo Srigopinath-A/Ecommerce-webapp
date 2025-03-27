@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.newapp.Webapp.Dto.Loginrequest;
 import com.newapp.Webapp.Dto.Response;
 import com.newapp.Webapp.Dto.Userdto;
-import com.newapp.Webapp.Service.Interface.UserService;
+import com.newapp.Webapp.Service.implementation.UserService;
 
 import lombok.RequiredArgsConstructor;
 
