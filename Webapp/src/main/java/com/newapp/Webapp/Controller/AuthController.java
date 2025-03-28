@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor //this could solve the userservice  not initalized issue.
-public class Controller {
+public class AuthController {
 	
 	private final UserService userservice;
 	

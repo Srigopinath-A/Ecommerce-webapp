@@ -41,7 +41,7 @@ public class User {
 	
 	@Column(unique = true)
 	@NotBlank(message = "mail id required")
-	private String mail;
+	private String email;
 	
 	@NotBlank(message = "password required")
 	private String password; // we dont need to return the password

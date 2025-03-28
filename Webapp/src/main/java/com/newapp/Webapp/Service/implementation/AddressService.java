@@ -18,10 +18,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddressService implements AddressServices{
 	
-	@Autowired
-	private final Addressrepo addressrepo;
 	
+	private final Addressrepo addressrepo;
 	private final UserService userservice;
+	
+	@Autowired
+	public AddressService(UserService userservice, Addressrepo addressrepo) {
+		this.addressrepo = addressrepo;
+		this.userservice = userservice;
+	}
+	
+	
 
 	@Override
 	public Response saveandupdateaddress(Addressdto addressdto){

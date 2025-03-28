@@ -42,7 +42,7 @@ public class JwtUtils {
 	}
 	
 	public String generateToken(User user) {
-		String username = user.getMail();
+		String username = user.getEmail();
 		return generateToken(username);
 	}
 	

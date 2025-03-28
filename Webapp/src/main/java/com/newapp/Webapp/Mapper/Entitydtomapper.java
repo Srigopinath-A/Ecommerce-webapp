@@ -22,7 +22,7 @@ public class Entitydtomapper {
 		Userdto userdto = new Userdto();
 		userdto.setId(user.getId());
 		userdto.setName(user.getName());
-		userdto.setMail(user.getMail());
+		userdto.setMail(user.getEmail());
 		userdto.setRole(user.getRole().name());
 		return userdto;
 	}

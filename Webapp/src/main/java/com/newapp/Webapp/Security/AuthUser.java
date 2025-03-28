@@ -38,7 +38,7 @@ public class AuthUser implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getMail();
+		return user.getEmail();
 	}
 
 	@Override

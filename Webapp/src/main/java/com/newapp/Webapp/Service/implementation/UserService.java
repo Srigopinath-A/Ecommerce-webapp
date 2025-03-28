@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
+
 public class UserService implements com.newapp.Webapp.Service.Interface.UserService {
 	
 	@Autowired
@@ -41,6 +41,16 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 	
 	private final Entitydtomapper entitydtomapper;
 	
+	public UserService(UserRepo userrepo, PasswordEncoder passwordencoder, JwtUtils jwtutils,
+			Entitydtomapper entitydtomapper) {
+		super();
+		this.userrepo = userrepo;
+		this.passwordencoder = passwordencoder;
+		this.jwtutils = jwtutils;
+		this.entitydtomapper = entitydtomapper;
+	}
+	
+	
 	@Override // we are using jsonIgnoreproperties in userdto so it will be avoiding content that we not used in userdto
 	public Response registeruser(Userdto registrationrequest) { // if there is no role present in registrationrequest then default will be user.
 		UserRole role = UserRole.USER;
@@ -49,7 +59,7 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 		}
 		User user =  User.builder()
 				.name(registrationrequest.getName())
-				.mail(registrationrequest.getMail())
+				.email(registrationrequest.getMail())
 				.password(passwordencoder.encode(registrationrequest.getPassword()))
 				.role(role)
 				.build();
@@ -101,6 +111,8 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 				.user(userdto)
 				.build();
 	}
+
+	
 
 	
 
