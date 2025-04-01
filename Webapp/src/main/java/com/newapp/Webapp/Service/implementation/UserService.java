@@ -28,27 +28,20 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 
 public class UserService implements com.newapp.Webapp.Service.Interface.UserService {
 	
-	@Autowired
 	private final UserRepo userrepo;
 	
-	@Autowired
+	
 	private final PasswordEncoder passwordencoder;
 	
 	private final JwtUtils jwtutils;
 	
 	private final Entitydtomapper entitydtomapper;
 	
-	public UserService(UserRepo userrepo, PasswordEncoder passwordencoder, JwtUtils jwtutils,
-			Entitydtomapper entitydtomapper) {
-		super();
-		this.userrepo = userrepo;
-		this.passwordencoder = passwordencoder;
-		this.jwtutils = jwtutils;
-		this.entitydtomapper = entitydtomapper;
-	}
+	
 	
 	
 	@Override // we are using jsonIgnoreproperties in userdto so it will be avoiding content that we not used in userdto
@@ -59,14 +52,21 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 		}
 		User user =  User.builder()
 				.name(registrationrequest.getName())
-				.email(registrationrequest.getMail())
+				.email(registrationrequest.getEmail())
 				.password(passwordencoder.encode(registrationrequest.getPassword()))
 				.role(role)
 				.build();
 		
 		User saveuser = userrepo.save(user);
+		System.out.println(saveuser);	
+		
+		
 		Userdto userdto = entitydtomapper.mapUserTodtoBasic(saveuser);
-		return Response.builder().status(200).message("User Successfuly Added").build();
+		return Response.builder()
+				.status(200)
+				.message("User Successfuly Added")
+				.user(userdto)
+				.build();
 	}
 
 	@Override
@@ -75,9 +75,14 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 		if(!passwordencoder.matches(loginrequest.getPassword(), user.getPassword())) {
 			throw new InvalidCredentialsException("password does not matches");
 		}
+		
+		String token = jwtutils.generateToken(user);
 		return Response.builder()
 				.status(200)
 				.message("user successfully logged in")
+				.token(token)
+				.expiration("6 Month")
+				.role(user.getRole().name())
 				.build();
 	}
 

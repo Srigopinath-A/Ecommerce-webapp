@@ -56,7 +56,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 		// first getting token from the header
 		String token = request.getHeader("Authorization");
 		// beare token is used for validation and along we can check it on the post man
-		if (StringUtils.hasText(token) && StringUtils.startsWithIgnoreCase(token, "Beares")) {
+		if (StringUtils.hasText(token) && StringUtils.startsWithIgnoreCase(token, "Bearer ")) {
 			return token.substring(7);
 		}
 		return null;

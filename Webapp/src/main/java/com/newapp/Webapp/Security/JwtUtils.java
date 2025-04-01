@@ -30,7 +30,7 @@ public class JwtUtils {
 	
 	
 	// always make user that your value is coming from the spring.beans.factory.annotation.value.
-	@Value("$(secretejwtString)")
+	@Value("${secretejwtString}")
 	private String secretejwtString;// it is in application properties 
 	
 	// when an bin of this jwtutil is created secrete key has to be initilaized so we are using the below
