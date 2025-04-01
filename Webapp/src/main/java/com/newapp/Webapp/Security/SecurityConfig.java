@@ -31,7 +31,7 @@ public class SecurityConfig { // this acts as a final security check
 		httpsecurity.csrf(AbstractHttpConfigurer::disable)// this is default configuration
 		.cors(Customizer.withDefaults())
 		.authorizeHttpRequests( request -> request // matching of the request has been checked 
-		.requestMatchers("/auth/","/category/**","/product/**","/order/**").permitAll() // this does not authenticate user accessing this it just permitall
+		.requestMatchers("/auth/**","/category/**","/product/**","/order/**").permitAll() // this does not authenticate user accessing this it just permitall
 		.anyRequest().authenticated())
 		.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.addFilterBefore(jwtauthfilter, UsernamePasswordAuthenticationFilter.class);

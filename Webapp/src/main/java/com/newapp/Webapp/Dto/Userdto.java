@@ -21,16 +21,13 @@ import lombok.NoArgsConstructor;
 public class Userdto {
 	
 	private long id;
-	private String name;
 	private String email;
-	
+	private String name;
 	private String password;
-
 	private Addressdto Address;
 	private String role;
 	private List<OrderItemdto> orderItemList;
 	
-	private LocalDateTime createdAt;
 
 
 

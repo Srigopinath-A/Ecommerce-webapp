@@ -39,16 +39,18 @@ public class User {
 	@NotBlank(message = "name required")
 	private String name;
 	
-	@Column(unique = true)
-	@NotBlank(message = "mail id required")
+	@Column(name = "email", unique = true)
+	@NotBlank(message = "email id required")
 	private String email;
 	
 	@NotBlank(message = "password required")
 	private String password; // we dont need to return the password
 	
-	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL, mappedBy = "user")
 	private Address Address;
+	
 	private UserRole role;
+	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,cascade = CascadeType.ALL )
 	private List<OrderItem> orderItemList;
 	

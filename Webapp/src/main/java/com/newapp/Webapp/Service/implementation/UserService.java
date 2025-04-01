@@ -94,7 +94,7 @@ public class UserService implements com.newapp.Webapp.Service.Interface.UserServ
 				.toList();
 		return Response.builder()
 				.status(200)
-				.message("List of user are shown")
+				.userlist(userdto)
 				.build();
 	}
 

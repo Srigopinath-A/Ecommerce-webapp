@@ -24,7 +24,7 @@ public class JwtUtils {
 	
 	// first we have to create a jwt token expiring time
 	// millisec * Minute * Hour * Day * Month .
-	private static final long Expiring_Time_Milliec = 1000L * 60L * 60L * 24L* 30L * 6L;// token will expire in 6 months.
+	private static final long Expiring_Time_Milliec =  1000L * 60L *60L *24L * 30L * 6L;// token will expire in 6 months.
 	// we going to create a secretKey key
 	private SecretKey key ;
 	
@@ -51,7 +51,7 @@ public class JwtUtils {
 		return Jwts.builder()
 				.subject(username)
 				.issuedAt(new Date(System.currentTimeMillis()))
-				.expiration(new Date(System.currentTimeMillis()* Expiring_Time_Milliec))
+				.expiration(new Date(System.currentTimeMillis() + Expiring_Time_Milliec))
 				.signWith(key)
 				.compact();
 	}
