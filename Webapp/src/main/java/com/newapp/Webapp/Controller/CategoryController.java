@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,15 +34,15 @@ public class CategoryController {
 		return ResponseEntity.ok(categoryservice.getAllcategories());
 	}
 
-	@DeleteMapping("/update/{categoryid}")
-	@PreAuthorize("hasAuthority('Admin')")
+	@PutMapping("/update/{categoryid}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> updatecategory(@PathVariable Long categoryid,
 			@RequestBody Categorydto categorydto) {
 		return ResponseEntity.ok(categoryservice.updatecategory(categoryid, categorydto));
 	}
 	
 	@DeleteMapping("/delete/{categoryid}")
-	@PreAuthorize("hasAuthority('Admin')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> deletecategory(@PathVariable Long categoryid){
 		return ResponseEntity.ok(categoryservice.deletecategory(categoryid));
 	}

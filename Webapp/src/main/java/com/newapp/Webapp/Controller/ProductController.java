@@ -27,7 +27,7 @@ public class ProductController {
 	private final ProductService productservice;
 
 	@PostMapping("/create")
-	@PreAuthorize("hasAuthority('Admin')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> createproduct(@RequestParam Long categoryid, @RequestParam MultipartFile image,
 			@RequestParam String namel, @RequestParam String Description, @RequestParam BigDecimal price) {
 
@@ -39,7 +39,7 @@ public class ProductController {
 	
 	
 	@PostMapping("/update")
-	@PreAuthorize("hasAuthority('Admin')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> updateproduct(@RequestParam Long productid,@RequestParam(required = false) Long categoryid,@RequestParam(required = false) MultipartFile image,
 			@RequestParam(required = false) String name, @RequestParam(required = false) String Description,@RequestParam(required = false) BigDecimal price){
 		
@@ -47,7 +47,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/delete/{productid}")
-	@PreAuthorize("hasAuthority(''Admin)")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> deleteproduct(@PathVariable Long productId){
 		return ResponseEntity.ok(productservice.deleteproduct(productId));
 	}

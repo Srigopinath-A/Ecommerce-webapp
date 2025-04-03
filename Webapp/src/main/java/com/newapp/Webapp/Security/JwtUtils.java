@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j // it automatically generates a logger field in the class so more concise logging code without creating it manually .
 public class JwtUtils {
-	
+
 	// first we have to create a jwt token expiring time
 	// millisec * Minute * Hour * Day * Month .
 	private static final long Expiring_Time_Milliec =  1000L * 60L *60L *24L * 30L * 6L;// token will expire in 6 months.
@@ -71,5 +71,5 @@ public class JwtUtils {
 	
 	private boolean isTokenExpired(String token) {
 		return extractClaims(token, Claims::getExpiration).before(new Date());
-	}
+	} 
 }
