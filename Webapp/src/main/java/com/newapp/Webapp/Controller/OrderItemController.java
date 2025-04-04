@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,17 +32,19 @@ public class OrderItemController {
 	
 	private final OrderitemService orderitemservice;
 	
-	@PostMapping("/order")
+	@PostMapping("/create")
 	public ResponseEntity<Response> placeorder(@RequestBody OrderRequest orderRequest){
 		return ResponseEntity.ok(orderitemservice.placeOrder(orderRequest));
 	}
 	
 	@PutMapping("/update-item-status/{orderitemid}")
-	@PreAuthorize("hasAuthority('Admin')")
-	public ResponseEntity<Response> updateorderitemstatus(@PathVariable Long orderitem, @RequestParam String status){
-		return ResponseEntity.ok(orderitemservice.updateOrderItemstatus(orderitem, status));
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public ResponseEntity<Response> updateorderitemstatus(@PathVariable Long orderitemid, @RequestParam String status){
+		return ResponseEntity.ok(orderitemservice.updateOrderItemstatus(orderitemid, status));
 	}
 	
+	@GetMapping("/filter")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Response> filterorderitems(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE.DATE_TIME)LocalDateTime startdate,@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE.DATE_TIME)LocalDateTime enddate,
 			@RequestParam(required = false) String status, @RequestParam(required = false) Long itemid,@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1000" ) int size){
 		
